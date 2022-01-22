@@ -1,0 +1,26 @@
+
+server: 
+  port: ${SERVER_PORT:8086}
+  servlet:
+    context-path: ${SERVLET_CONTEXT_PATH:/}
+    
+spring: 
+  application: 
+    name: cloud-stream-annotation-publish
+    
+  cloud:
+    stream:
+      bindings:
+        validProcess:
+          destination: queue.load.process      
+        approved:
+          destination: queue.loan.approved
+        declined:
+          destination: queue.loan.declined
+
+
+  rabbitmq:
+    host: ${RABBITMQ_SERVER:localhost}
+    port: ${RABBITMQ_SERVER_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}    

@@ -1,0 +1,19 @@
+version: '3.8'
+
+networks:
+  rabbitmq-net:
+
+services:
+  # RabbitMQ
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management # 웹 UI management 툴 포함
+    # 환경변수 설정
+    environment: 
+      -  RABBITMQ_USER=quest
+      -  RABBITMQ_PASSWORD=quest
+    ports:
+      - "5672:5672" # rabbitMQ default port
+      - "15672:15672" # UI를 위한 port`
+    networks:
+      - rabbitmq-net
